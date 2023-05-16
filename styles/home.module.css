@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Work Sans');
+
+.category {
+    background-color: #36f!important;
+    color: #fff!important;
+    padding: 5px;
+    border-radius: 8px;
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+
+.cardheading {
+    font-family: 'Work Sans';
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.cardpara {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 14px;
+    font-family: 'Work Sans';
+}
+
+.creator { 
+    font-family: 'Work Sans';
+    font-size: 14px;
+}
+
+.divider {
+    margin-top: 20px;
+}
+
+.menudiv {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.menuitem {
+    margin-left: 30px;
+}
+
+.newsdiv {
+    margin-top: 100px;
+}
+
+.newsheading {
+    font-family: 'Work Sans';
+    font-weight: 700;
+    line-height: 1.2;
+    color: #414141;
+    font-size: 1.75rem;
+}
