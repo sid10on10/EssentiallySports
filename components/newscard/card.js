@@ -15,14 +15,13 @@ export default function Card(props){
     }
 
     return (
-        <Box sx={{ width: 'auto', display: { xs: 'block', sm: 'block', md: 'flex'}, height: 'auto', marginTop: '50px' }}>
+        <Box sx={{ width: 'auto', display: { xs: 'block', sm: 'block', md: 'flex'}, height: 'auto', marginTop: '50px', boxShadow: '0 1px 10px 2px #cccccc94' }}>
             <Box sx={{ 
                 width: {xs: '100%', sm: '100%', md: '70%'},
                 backgroundImage: `url('${data['media:content']['$'].url}')`,
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
-                height: '350px',
-                backgroundColor: 'red'
+                height: '350px'
             }}>
             </Box>
             <Box sx={{ padding: '30px' }}>

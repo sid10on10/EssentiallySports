@@ -3,7 +3,7 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: false,
     images: {
-      domains: ['d33wubrfki0l68.cloudfront.net'],
+      domains: ['https://image-cdn.essentiallysports.com', 'd33wubrfki0l68.cloudfront.net'],
     },
     // images: {
     //   remotePatterns: [
