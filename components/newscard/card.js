@@ -30,7 +30,7 @@ export default function Card(props){
                         return <a key={index} className={styles.category}>{item}</a>
                     })}
                 </Box>
-                <h1 className={styles.cardheading}>{data.title}</h1>
+                <h2 className={styles.cardheading}>{data.title}</h2>
                 <div className={styles.cardpara} dangerouslySetInnerHTML={{__html: data.content}}>
                 </div>
                 <Box sx={{ marginTop: '40px', display: 'flex', justifyContent: 'space-between' }}>
