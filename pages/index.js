@@ -2,7 +2,6 @@
 import Image from 'next/image'
 
 // react imports
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { endpoint, routes } from '../config';
 import Parser from 'rss-parser'
@@ -18,12 +17,19 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 // style imports
 import styles from '../styles/home.module.css';
 
-
+// module imports
+import Card from '../components/newscard/card';
 
 export default function Home() {
 
-    const parser = new Parser()
+    const parser = new Parser({
+        customFields: {
+          feed: [],
+          item: ['media:content'],
+        }
+      })
 
+    const [posts, setPosts] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -35,6 +41,8 @@ export default function Home() {
         try {
             const feed = await parser.parseURL(`${endpoint[endpoint['current']]}${routes['feed']['get']}`)
             console.log(feed)
+            setPosts(feed.items)
+            console.log(feed.items)
         } catch (error) {
             console.log(error)
         }
@@ -130,29 +138,10 @@ export default function Home() {
                 </Box>
                 <Box className={styles.newsdiv}>
                     <h1 className={styles.newsheading}>Latest News</h1>
-                    <Box sx={{ width: 'auto', display: { xs:'block', sm: 'block', md: 'flex'}, height: '400px', marginTop: '50px' }}>
-                        <Box sx={{ 
-                            width: '40%',
-                            backgroundImage: "url('https://d33wubrfki0l68.cloudfront.net/26b25c6e5c6cf826a5d8ce56223a04c2f6efe5e1/f6bae/assets/images/blog-img5.jpg')",
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat'
-                        }}>
-                            
-                        </Box>
-                        <Box sx={{ padding: '30px' }}>
-                            <a className={styles.category}>LifeStyle</a>
-                            <h1 className={styles.cardheading}>Every household to get prepaid blank postcard courtesy of News Post</h1>
-                            <p className={styles.cardpara}>The and room. Know and nation question would the to copy. And leather and eyes human would collection.</p>
-                            <Box sx={{ marginTop: '40px', display: 'flex', justifyContent: 'space-between' }}>
-                                <Box>
-                                    <p className={styles.creator}>John Doe</p>
-                                </Box>
-                                <Box sx={{ display: 'flex' }}>
-                                    <p className={styles.creator}>24 August</p>
-                                </Box>
-                            </Box>
-                        </Box>
-                    </Box>
+                    {posts.map((item, index)=>{
+                        return <Card key={index} data={item}/>
+                    })}
+                    
                 </Box>
             </Box>
         </main>
