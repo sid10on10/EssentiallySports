@@ -9,10 +9,11 @@ import Parser from 'rss-parser'
 // material ui imports
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 import Divider from '@mui/material/Divider';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 // style imports
 import styles from '../styles/home.module.css';
@@ -22,16 +23,19 @@ import Card from '../components/newscard/card';
 
 export default function Home() {
 
+    
+     
+    const [loaded, setLoaded] = useState(false)
+    const [posts, setPosts] = useState([])
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+
     const parser = new Parser({
         customFields: {
           feed: [],
           item: ['media:content'],
         }
-      })
-
-    const [posts, setPosts] = useState([])
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
+    })
 
     useEffect(()=>{
         loadItems()
@@ -40,9 +44,8 @@ export default function Home() {
     const loadItems = async () => {
         try {
             const feed = await parser.parseURL(`${endpoint[endpoint['current']]}${routes['feed']['get']}`)
-            console.log(feed)
             setPosts(feed.items)
-            console.log(feed.items)
+            setLoaded(true)
         } catch (error) {
             console.log(error)
         }
@@ -138,9 +141,9 @@ export default function Home() {
                 </Box>
                 <Box className={styles.newsdiv}>
                     <h1 className={styles.newsheading}>Latest News</h1>
-                    {posts.map((item, index)=>{
+                    {loaded ? posts.map((item, index)=>{
                         return <Card key={index} data={item}/>
-                    })}
+                    }) : <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}><CircularProgress /></Box>}
                     
                 </Box>
             </Box>
