@@ -174,8 +174,8 @@ export default function Home() {
                         </Box>
                     </Box>
                     <Box sx={{ display: { xs: 'block', sm: 'block', md: 'flex' }, justifyContent: 'space-evenly' }}>
-                        {trendingloaded ? trending.map((item)=>{
-                            return <TrendingCard data={item}/>
+                        {trendingloaded ? trending.map((item, index)=>{
+                            return <TrendingCard data={item} key={index}/>
                         }) : <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}><CircularProgress /></Box>}
                     </Box>
                 </Box>
