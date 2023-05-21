@@ -12,14 +12,10 @@ export default function TrendingCard(props){
 
     const { data } = props
 
-    function parseDate(dateString){
-        return dateString.slice(0,17)
-    }
-
     return (
         <Box sx={{ width: 'auto', display: { xs: 'block', sm: 'block', md: 'block' }, height: 'auto', marginTop: '50px', width: '248px', borderRadius: '8px' }}>
             <Box sx={{
-                backgroundImage: `url('/image.png')`,
+                backgroundImage: `url("${data.sourceDetails.source_url}")`,
                 backgroundSize: 'contain',
                 backgroundRepeat: 'no-repeat',
                 height: '158px',
@@ -27,10 +23,10 @@ export default function TrendingCard(props){
             }}>
             </Box>
             <Box sx={{ padding: '30px', background: '#FFFFFF' }}>
-                <h2 className={styles.trendingcardheading}>5x NBA All Star Coming in Luka Doncic’s Aid “Makes a Ton of Sense”: Insider</h2>
-                <p className={styles.trendingcarddate}>May 20, 2023</p>
+                <h2 className={styles.trendingcardheading}>{data.title}</h2>
+                <p className={styles.trendingcarddate}>{data.formattedDate}</p>
                 <Box sx={{ marginTop: '70px' }}>
-                    <h2 className={styles.trendingcount}><Image src="/eye-fill.png" width="10" height="10"/>  22432</h2>
+                    <h2 className={styles.trendingcount}><Image src="/eye-fill.png" width="10" height="10"/>  {data.views}</h2>
                 </Box>
             </Box>
         </Box>

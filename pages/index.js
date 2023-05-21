@@ -173,12 +173,10 @@ export default function Home() {
                             <p className={styles.trendingcount}><Image src="/eye-fill.png" width="10" height="10"/>  22k Live readers</p>
                         </Box>
                     </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                        <TrendingCard/>
-                        <TrendingCard/>
-                        <TrendingCard/>
-                        <TrendingCard/>
-                        <TrendingCard/>
+                    <Box sx={{ display: { xs: 'block', sm: 'block', md: 'flex' }, justifyContent: 'space-evenly' }}>
+                        {trendingloaded ? trending.map((item)=>{
+                            return <TrendingCard data={item}/>
+                        }) : <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}><CircularProgress /></Box>}
                     </Box>
                 </Box>
             </Box>
