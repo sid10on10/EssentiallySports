@@ -6,7 +6,7 @@ let endpoint = {
 
 let routes = {
     "feed": {
-        "get": "/cors",
+        "get": "/cors"
     }
 }
 
