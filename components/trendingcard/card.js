@@ -29,9 +29,8 @@ export default function TrendingCard(props){
             <Box sx={{ padding: '30px', background: '#FFFFFF' }}>
                 <h2 className={styles.trendingcardheading}>5x NBA All Star Coming in Luka Doncic’s Aid “Makes a Ton of Sense”: Insider</h2>
                 <p className={styles.trendingcarddate}>May 20, 2023</p>
-                <Box sx={{ display: 'flex', marginTop: '30px' }}>
-                    <Image src="/eye-fill.png" width="10" height="10"/>
-                    <h2 className={styles.trendingcount}>22432</h2>
+                <Box sx={{ marginTop: '70px' }}>
+                    <h2 className={styles.trendingcount}><Image src="/eye-fill.png" width="10" height="10"/>  22432</h2>
                 </Box>
             </Box>
         </Box>

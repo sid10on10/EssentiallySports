@@ -73,7 +73,7 @@
     line-height: 26px;
     color: #222222;
     position: relative;
-    bottom: 18px;
+    bottom: 22px;
     margin-left: 10px;
 }
 
@@ -105,4 +105,5 @@
     font-size: 12px;
     line-height: 18px;
     color: #717171;
+    display: 'inline'
 }

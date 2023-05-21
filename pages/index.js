@@ -5,7 +5,8 @@ import { useRouter } from 'next/router';
 // react imports
 import { useState, useEffect } from 'react';
 import { endpoint, routes } from '../config';
-import Parser from 'rss-parser'
+import Parser from 'rss-parser';
+import axios from 'axios';
 
 // material ui imports
 import Box from '@mui/material/Box';
@@ -44,6 +45,7 @@ export default function Home() {
 
     useEffect(()=>{
         loadItems()
+        loadTrending()
     }, [])
 
     const loadItems = async () => {
@@ -51,6 +53,16 @@ export default function Home() {
             const feed = await parser.parseURL(`${endpoint[endpoint['current']]}${routes['feed']['get']}`)
             setPosts(feed.items)
             setLoaded(true)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const loadTrending = async () => {
+        try {
+            const response = await axios.get('https://weak-train-dove.cyclic.app/data')
+            setTrending(response.data.articles)
+            setTrendingloaded(true)
         } catch (error) {
             console.log(error)
         }
@@ -154,13 +166,11 @@ export default function Home() {
                 </Box>
                 <Box sx={{ marginTop: '40px', background: '#F2F4F7', px: '20px', py: '20px' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Box sx={{ display: 'flex' }}>
-                            <Image src="/trending.png" width="20" height="20" />
-                            <h2 className={styles.trendingheading}>Trending</h2>
+                        <Box>
+                            <h2 className={styles.trendingheading}><Image src="/trending.png" width="20" height="20" />  Trending</h2>
                         </Box>
-                        <Box sx={{ display: 'flex' }}>
-                            <Image src="/eye-fill.png" width="10" height="10"/>
-                            <h2 className={styles.trendingcount}>22k Live readers</h2>
+                        <Box>
+                            <p className={styles.trendingcount}><Image src="/eye-fill.png" width="10" height="10"/>  22k Live readers</p>
                         </Box>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
