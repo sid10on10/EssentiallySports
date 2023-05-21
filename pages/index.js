@@ -21,7 +21,7 @@ import styles from '../styles/home.module.css';
 
 // module imports
 import Card from '../components/newscard/card';
-import { Router } from 'next/router';
+import TrendingCard from '../components/trendingcard/card';
 
 export default function Home() {
 
@@ -29,6 +29,8 @@ export default function Home() {
      
     const [loaded, setLoaded] = useState(false)
     const [posts, setPosts] = useState([])
+    const [trendingloaded, setTrendingloaded] = useState(false)
+    const [trending, setTrending] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
 
     const open = Boolean(anchorEl)
@@ -149,6 +151,25 @@ export default function Home() {
                     {loaded ? posts.map((item, index)=>{
                         return <Card key={index} data={item}/>
                     }) : <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}><CircularProgress /></Box>}
+                </Box>
+                <Box sx={{ marginTop: '40px', background: '#F2F4F7', px: '20px', py: '20px' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Box sx={{ display: 'flex' }}>
+                            <Image src="/trending.png" width="20" height="20" />
+                            <h2 className={styles.trendingheading}>Trending</h2>
+                        </Box>
+                        <Box sx={{ display: 'flex' }}>
+                            <Image src="/eye-fill.png" width="10" height="10"/>
+                            <h2 className={styles.trendingcount}>22k Live readers</h2>
+                        </Box>
+                    </Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                        <TrendingCard/>
+                        <TrendingCard/>
+                        <TrendingCard/>
+                        <TrendingCard/>
+                        <TrendingCard/>
+                    </Box>
                 </Box>
             </Box>
         </main>
