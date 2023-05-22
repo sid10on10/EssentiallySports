@@ -14,11 +14,18 @@ export default function Card(props){
         return dateString.slice(0,17)
     }
 
+    function parseImage(data){
+        if(data['media:content']){
+            return data['media:content']['$'].url
+        }
+        return 'image.png'
+    }
+
     return (
         <Box sx={{ width: 'auto', display: { xs: 'block', sm: 'block', md: 'flex'}, height: 'auto', marginTop: '50px', boxShadow: '0 1px 10px 2px #cccccc94' }}>
             <Box sx={{ 
                 width: {xs: '100%', sm: '100%', md: '70%'},
-                backgroundImage: `url('${data['media:content']['$'].url}')`,
+                backgroundImage: `url('${parseImage(data)}')`,
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 height: '350px'
